@@ -1,0 +1,18 @@
+package org.lya.sesion06;
+
+public class TiemposMatrizEnterosCuadrada {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int n = 32;
+		MatrizEnterosCuadrada matriz = new MatrizEnterosCuadrada(n);
+		for(int i = 0; i<10;i++){
+			long startTime = System.currentTimeMillis();
+			matriz.matrizOrdenadaPorFilas();
+			long endTime = System.currentTimeMillis();
+			long[] arrayTiempos = new long[10];
+			arrayTiempos[i]=endTime-startTime;
+		}
+	}
+
+}

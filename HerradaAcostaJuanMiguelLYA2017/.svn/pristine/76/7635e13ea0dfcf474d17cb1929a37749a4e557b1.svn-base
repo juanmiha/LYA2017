@@ -1,0 +1,48 @@
+package org.lya.sesion09;
+
+public class TiemposCoeficienteBin {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		double tiempoTotal,resultado;
+		double tiempoMedioRec = 0;
+		double tiempoMedioPD = 0;
+		double[] tiempos;
+
+		for (int n = 4; n < 25; n++) {
+
+			CoeficienteBin coeficiente = new CoeficienteBin(2*n,n);
+			tiempos = new double[10];
+
+			for (int i = 0; i < tiempos.length; i++) {
+				long tiempoStart = System.nanoTime();
+				coeficiente.coefBinomialRecursivo();
+				long tiempoEnd = System.nanoTime();
+				tiempoTotal = tiempoEnd - tiempoStart;
+				tiempos[i] = tiempoTotal;
+			}
+			resultado = 0;
+			for (int i = 0; i < tiempos.length; i++) {
+				resultado += tiempos[i];
+				tiempoMedioRec = resultado/tiempos.length;
+			}
+
+			for (int i = 0; i < tiempos.length; i++) {
+				long tiempoStart = System.nanoTime();
+				coeficiente.coefBinomialProgDinam();
+				long tiempoEnd = System.nanoTime();
+				tiempoTotal = tiempoEnd - tiempoStart;
+				tiempos[i] = tiempoTotal;
+			}
+			resultado = 0;
+			for (int i = 0; i < tiempos.length; i++) {
+				resultado += tiempos[i];
+				tiempoMedioPD = resultado/tiempos.length;
+			}
+			System.out.printf("%5d %25.0f %25.0f\n",n,tiempoMedioRec,tiempoMedioPD);
+		}
+
+	}
+
+}

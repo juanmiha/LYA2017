@@ -1,0 +1,50 @@
+package org.lya.sesion06;
+
+public class MatrizEnterosCuadrada {
+	private int[][] matriz;
+
+	public MatrizEnterosCuadrada(int numeroFilasCol){
+		matriz = new int [numeroFilasCol][numeroFilasCol];
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				matriz[i][j] = (int) (Math.random()*51);
+			}
+		}
+	}
+	public MatrizEnterosCuadrada(int[][] m){
+		this.matriz = new int [m.length][m[0].length];
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				this.matriz[i][j] = matriz[i][j];
+			}
+		}
+	}
+	public void insercion(int[] array){
+		for (int  i = 1; i <array.length;i++){
+			int aux=array[i];
+			int j;
+			for(j=i-1;(j >= 0) && (aux < array[j]);j--){
+				array[j + 1] = array[j];
+			}
+			array[j + 1] = aux;
+		}
+	}
+	public int[][] matrizOrdenadaPorFilas(){
+		int[][] x = new int[matriz.length][matriz[0].length];
+		for(int i = 0; i < matriz.length; i++){
+			int[] p = new int[matriz[0].length];
+			for(int j = 0; j < matriz[0].length; j++){
+				p[j] = matriz[i][j];
+			}
+			insercion(p);
+			for(int j = 0; j < matriz[0].length; j++){
+				x[i][j] = p[j];
+			}
+		}
+		return x;
+	}
+	public int[][] getMatriz() {
+		return matriz;
+	}
+
+}
